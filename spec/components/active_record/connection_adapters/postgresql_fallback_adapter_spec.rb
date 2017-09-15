@@ -115,6 +115,16 @@ describe ActiveRecord::ConnectionHandling do
     end
   end
 
+  describe '.verify_replica' do
+    describe 'when database is not in recovery' do
+      it 'should raise the right error' do
+        expect do
+          ActiveRecord::Base.send(:verify_replica, ActiveRecord::Base.connection)
+        end.to raise_error(RuntimeError, "Replica database server is not in recovery mode.")
+      end
+    end
+  end
+
   def with_multisite_db(dbname)
     RailsMultisite::ConnectionManagement.expects(:current_db).returns(dbname).at_least_once
     yield
