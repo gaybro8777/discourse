@@ -283,10 +283,10 @@ SQL
         end
 
       if rows.length == 1
-        before = rows[0][1].to_i
-        after = rows[0][0].to_i
+        before = rows[0][1]
+        after = rows[0][0]
 
-        before_last_read = rows[0][2].to_i
+        before_last_read = rows[0][2]
 
         if before_last_read < post_number
           # The user read at least one new post

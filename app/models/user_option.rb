@@ -9,7 +9,7 @@ class UserOption < ActiveRecord::Base
     exec_sql("SELECT u.id FROM users u
               LEFT JOIN user_options o ON o.user_id = u.id
               WHERE o.user_id IS NULL").values.each do |id, _|
-      UserOption.create(user_id: id.to_i)
+      UserOption.create(user_id: id)
     end
   end
 

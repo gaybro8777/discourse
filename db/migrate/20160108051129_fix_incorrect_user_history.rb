@@ -14,8 +14,8 @@ class FixIncorrectUserHistory < ActiveRecord::Migration[4.2]
 (action = 19 AND target_user_id IS NULL AND details IS NOT NULL)
 CLAUSE
 
-    first_wrong_id = execute("SELECT min(id) FROM user_histories WHERE #{condition}").values[0][0].to_i
-    last_wrong_id = execute("SELECT max(id) FROM user_histories WHERE #{condition}").values[0][0].to_i
+    first_wrong_id = execute("SELECT min(id) FROM user_histories WHERE #{condition}").values[0][0]
+    last_wrong_id = execute("SELECT max(id) FROM user_histories WHERE #{condition}").values[0][0]
 
     if first_wrong_id < last_wrong_id
       msg = "Correcting user history records from id: #{first_wrong_id} to #{last_wrong_id} (see: https://meta.discourse.org/t/old-user-suspension-reasons-have-gone-missing/3730)"

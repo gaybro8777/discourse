@@ -96,7 +96,7 @@ SQL
          AND t.id IN (SELECT topic_id FROM topic_allowed_users WHERE user_id = :user_id)
     SQL
 
-    all, mine, unread = exec_sql(sql, user_id: user_id).values[0].map(&:to_i)
+    all, mine, unread = exec_sql(sql, user_id: user_id).values[0]
 
     sql = <<-SQL
       SELECT  g.name, COUNT(*) "count"

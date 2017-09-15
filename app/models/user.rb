@@ -409,7 +409,7 @@ class User < ActiveRecord::Base
       user_id: id,
       type: Notification.types[:private_message]
     ).values.map! do |id, read|
-      [id.to_i, read]
+      [id, read]
     end
 
     MessageBus.publish("/notification/#{id}",
